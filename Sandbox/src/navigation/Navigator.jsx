@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../screens/Home'
 import Profile from '../screens/Profile'
 import Map from '../screens/Map'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const Stack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -19,8 +20,31 @@ function ProfileNavigator () {
 function Navigator () {
   return (
     <TabStack.Navigator initialRouteName='Home'>
-      <TabStack.Screen name='Home' component={Home} />
-      <TabStack.Screen options={{ headerShown: false }} name='ProfileStack' component={ProfileNavigator} />
+      <TabStack.Screen
+        name='Home'
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused, color, size }) =>
+            <Icon
+              name={focused ? 'home' : 'home-outline'}
+              size={size}
+              color={color}
+            />
+        }}
+      />
+      <TabStack.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) =>
+            <Icon
+              name={focused ? 'person' : 'person-outline'}
+              size={size}
+              color={color}
+            />
+        }}
+        name='ProfileStack'
+        component={ProfileNavigator}
+      />
     </TabStack.Navigator>
   )
 }
