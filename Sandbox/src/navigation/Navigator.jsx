@@ -4,6 +4,7 @@ import Home from '../screens/Home'
 import Profile from '../screens/Profile'
 import Map from '../screens/Map'
 import Icon from 'react-native-vector-icons/Ionicons'
+import CameraScreen from '../screens/Camera'
 
 const Stack = createNativeStackNavigator()
 const TabStack = createBottomTabNavigator()
@@ -31,6 +32,19 @@ function Navigator () {
               color={color}
             />
         }}
+      />
+      <TabStack.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) =>
+            <Icon
+              name={focused ? 'camera' : 'camera-outline'}
+              size={size}
+              color={color}
+            />
+        }}
+        name='Camera'
+        component={CameraScreen}
       />
       <TabStack.Screen
         options={{
